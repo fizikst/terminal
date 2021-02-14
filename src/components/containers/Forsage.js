@@ -112,7 +112,7 @@ function Forsage(props) {
     }
   }, [onStart, repeat, check, onStop]);
 
-  console.log("RESULT", { inc, end, repeat, start, check });
+  // console.log("RESULT", { inc, end, repeat, start, check });
 
   return (
     <div>
