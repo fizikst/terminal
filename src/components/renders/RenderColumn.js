@@ -1,8 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const generateKey = (pre) => {
-  return `${pre}_${new Date().getTime()}`;
-};
+const generateKey = (pre) => `${pre}_${new Date().getTime()}`;
 
 function RenderColumn(props) {
   const { args } = props;

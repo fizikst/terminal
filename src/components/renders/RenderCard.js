@@ -1,5 +1,5 @@
-import React from "react";
-import Abacus from "../Abacus";
+import React from 'react';
+import Abacus from '../Abacus';
 
 function RenderCard(props) {
   const { args, inc, abacusState } = props;
@@ -9,7 +9,7 @@ function RenderCard(props) {
     <div>
       <p>{inc}</p>
       <p>{args[inc]}</p>
-      <Abacus abacus={abacusState} handleChange={() => console.log("click")} />
+      <Abacus abacus={abacusState} handleChange={() => console.log('click')} />
     </div>
   );
 }

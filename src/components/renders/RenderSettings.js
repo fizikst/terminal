@@ -1,5 +1,5 @@
-import React from "react";
-import useTerminal from "../states/useTerminal";
+import React from 'react';
+import useTerminal from '../states/useTerminal';
 
 function RenderSettings() {
   const { toggleControls, state } = useTerminal();

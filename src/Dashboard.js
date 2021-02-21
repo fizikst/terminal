@@ -1,7 +1,7 @@
-import React from "react";
-import RenderControls from "./components/renders/RenderControls";
-import RenderSettings from "./components/renders/RenderSettings";
-import useTerminal from "./components/states/useTerminal";
+import React from 'react';
+import RenderControls from './components/renders/RenderControls';
+import RenderSettings from './components/renders/RenderSettings';
+import useTerminal from './components/states/useTerminal';
 
 function Dashboard(props) {
   // const { state, start, stop } = useTerminal();

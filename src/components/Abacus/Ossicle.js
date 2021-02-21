@@ -1,17 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = () => ({
   passive: {
-    background: "#022d63"
+    background: '#022d63',
   },
   white: {
-    background: "white"
+    background: 'white',
   },
   active: {
-    background: "#ffcc14"
-  }
+    background: '#ffcc14',
+  },
 });
 
 /**
@@ -42,17 +42,19 @@ class Ossicle extends React.Component {
    * @returns {object}.
    */
   render() {
-    const { classes, five, active, colors, passive, hidden } = this.props;
+    const {
+      classes, five, active, colors, passive, hidden,
+    } = this.props;
     const [activeClass, passiveClass, middleClass] = colors;
 
     const style = {
-      borderRadius: "50%",
-      textAlign: "center",
-      paddingTop: "2px",
-      cursor: "pointer",
-      color: "white",
-      height: "40px",
-      opacity: 0.7
+      borderRadius: '50%',
+      textAlign: 'center',
+      paddingTop: '2px',
+      cursor: 'pointer',
+      color: 'white',
+      height: '40px',
+      opacity: 0.7,
     };
     return (
       <div>
@@ -75,8 +77,8 @@ class Ossicle extends React.Component {
                 active
                   ? classes[middleClass]
                   : passive
-                  ? classes[activeClass]
-                  : classes[passiveClass]
+                    ? classes[activeClass]
+                    : classes[passiveClass]
               }
               style={style}
               onClick={this.handleClickBead}
@@ -90,7 +92,7 @@ class Ossicle extends React.Component {
 
 Ossicle.defaultProps = {
   passive: false,
-  hidden: false
+  hidden: false,
 };
 
 Ossicle.propTypes = {
@@ -100,7 +102,7 @@ Ossicle.propTypes = {
   hidden: PropTypes.bool,
   passive: PropTypes.bool,
   five: PropTypes.bool.isRequired,
-  colors: PropTypes.array.isRequired
+  colors: PropTypes.array.isRequired,
 };
 
 export default withStyles(styles)(Ossicle);

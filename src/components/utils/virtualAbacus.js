@@ -1,4 +1,4 @@
-const labels = ["a", "b", "c", "d", "e", "f"];
+const labels = ['a', 'b', 'c', 'd', 'e', 'f'];
 
 /**
  * Заполняет состояние абака единицами согласно
@@ -21,31 +21,31 @@ export const fillingValues = (number, range) => {
       k -= 1;
       const label = labels[k];
       switch (numberComposition[i]) {
-        case "1":
+        case '1':
           pod = [0, 1, 0, 0, 0];
           break;
-        case "2":
+        case '2':
           pod = [0, 1, 1, 0, 0];
           break;
-        case "3":
+        case '3':
           pod = [0, 1, 1, 1, 0];
           break;
-        case "4":
+        case '4':
           pod = [0, 1, 1, 1, 1];
           break;
-        case "5":
+        case '5':
           pod = [1, 0, 0, 0, 0];
           break;
-        case "6":
+        case '6':
           pod = [1, 1, 0, 0, 0];
           break;
-        case "7":
+        case '7':
           pod = [1, 1, 1, 0, 0];
           break;
-        case "8":
+        case '8':
           pod = [1, 1, 1, 1, 0];
           break;
-        case "9":
+        case '9':
           pod = [1, 1, 1, 1, 1];
           break;
         default:
@@ -58,22 +58,20 @@ export const fillingValues = (number, range) => {
   return nextAbacus;
 };
 
-export const sumOnRod = (rod) =>
-  rod.reduce((accumulator, value, index) => {
-    const result = accumulator;
-    let summand = 0;
-    if (value === 1) {
-      summand = index === 0 ? 5 : 1;
-    }
-    return result + summand;
-  }, 0);
+export const sumOnRod = (rod) => rod.reduce((accumulator, value, index) => {
+  const result = accumulator;
+  let summand = 0;
+  if (value === 1) {
+    summand = index === 0 ? 5 : 1;
+  }
+  return result + summand;
+}, 0);
 
-export const sumAbacus = (abacusState) =>
-  Object.values(abacusState)
-    .reverse()
-    .reduce((accumulator, value, index) => {
-      const result = accumulator;
-      const summand = sumOnRod(value);
-      const order = Number("1".padEnd(index + 1, "0"));
-      return result + summand * order;
-    }, 0);
+export const sumAbacus = (abacusState) => Object.values(abacusState)
+  .reverse()
+  .reduce((accumulator, value, index) => {
+    const result = accumulator;
+    const summand = sumOnRod(value);
+    const order = Number('1'.padEnd(index + 1, '0'));
+    return result + summand * order;
+  }, 0);

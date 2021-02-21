@@ -1,24 +1,24 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Grid from "@material-ui/core/Grid";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 
-import Ossicle from "./Ossicle";
+import Ossicle from './Ossicle';
 
 const styles = {
   row: {
-    padding: "1px"
+    padding: '1px',
   },
   topRow: {
-    borderTop: "#022d63 1px solid",
-    padding: "0"
+    borderTop: '#022d63 1px solid',
+    padding: '0',
   },
   hiddenTopRow: {
-    borderTop: "white 1px solid",
-    padding: "0"
+    borderTop: 'white 1px solid',
+    padding: '0',
   },
   bottomRow: {
-    padding: "0"
-  }
+    padding: '0',
+  },
 };
 
 /**
@@ -69,9 +69,9 @@ class Rod extends React.Component {
   render() {
     const ossicles = [];
     const { data, hidden } = this.props;
-    let activeClass = "passive";
-    let passiveClass = "white";
-    const middleClass = "white";
+    let activeClass = 'passive';
+    let passiveClass = 'white';
+    const middleClass = 'white';
 
     ossicles.push(
       <Grid item xs={12} lg={12} sm={12} md={12} key={-3} style={styles.row}>
@@ -82,11 +82,11 @@ class Rod extends React.Component {
           onClickBead={() => this.handleCheckBead(0)}
           colors={[activeClass, passiveClass]}
         />
-      </Grid>
+      </Grid>,
     );
 
-    activeClass = "active";
-    passiveClass = "white";
+    activeClass = 'active';
+    passiveClass = 'white';
     ossicles.push(
       <Grid
         item
@@ -104,11 +104,11 @@ class Rod extends React.Component {
           onClickBead={() => this.handleCheckBead(0)}
           colors={[activeClass, passiveClass]}
         />
-      </Grid>
+      </Grid>,
     );
 
-    activeClass = "white";
-    passiveClass = "active";
+    activeClass = 'white';
+    passiveClass = 'active';
     ossicles.push(
       <Grid
         item
@@ -126,11 +126,11 @@ class Rod extends React.Component {
           onClickBead={() => this.handleCheckBead(1)}
           colors={[activeClass, passiveClass]}
         />
-      </Grid>
+      </Grid>,
     );
 
-    activeClass = "active";
-    passiveClass = "passive";
+    activeClass = 'active';
+    passiveClass = 'passive';
     for (let i = 1; i < 5; i += 1) {
       const item = data[i] === 1 ? i + 1 : i;
       const show = data[i] === 0 || data[i + 1] === 1;
@@ -145,7 +145,7 @@ class Rod extends React.Component {
             onClickBead={() => this.handleCheckBead(item)}
             colors={[activeClass, passiveClass, middleClass]}
           />
-        </Grid>
+        </Grid>,
       );
     }
 
@@ -160,7 +160,7 @@ class Rod extends React.Component {
 Rod.propTypes = {
   data: PropTypes.array.isRequired,
   hidden: PropTypes.bool.isRequired,
-  onChangeRod: PropTypes.func.isRequired
+  onChangeRod: PropTypes.func.isRequired,
 };
 
 export default Rod;

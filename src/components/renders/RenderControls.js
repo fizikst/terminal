@@ -1,5 +1,5 @@
-import React from "react";
-import useTerminal from "../states/useTerminal";
+import React from 'react';
+import useTerminal from '../states/useTerminal';
 
 function RenderControls() {
   // console.log({ state });
@@ -9,11 +9,11 @@ function RenderControls() {
     stop: onStop,
     check: onCheck,
     onChangeInputValue,
-    patchControls
+    patchControls,
   } = useTerminal();
 
   const {
-    controls: { start, success, failure }
+    controls: { start, success, failure },
   } = state;
 
   const handleChange = (event) => {
@@ -22,7 +22,7 @@ function RenderControls() {
     if (onChangeInputValue) {
       onChangeInputValue(nextValue);
     } else {
-      patchControls("value", nextValue);
+      patchControls('value', nextValue);
     }
   };
 

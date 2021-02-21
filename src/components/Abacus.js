@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Grid from "@material-ui/core/Grid";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 
-import Rod from "./Abacus/Rod";
+import Rod from './Abacus/Rod';
 
 /**
  * Отобраежение отображения абака
@@ -48,7 +48,7 @@ class Abacus extends React.Component {
             hidden={hidden}
             onChangeRod={(rodData) => this.handleChangeRod(rodData, index)}
           />
-        </Grid>
+        </Grid>,
       );
     }
 
@@ -65,12 +65,12 @@ class Abacus extends React.Component {
 Abacus.propTypes = {
   abacus: PropTypes.object,
   hidden: PropTypes.bool,
-  handleChange: PropTypes.func.isRequired
+  handleChange: PropTypes.func.isRequired,
 };
 
 Abacus.defaultProps = {
   abacus: {},
-  hidden: false
+  hidden: false,
 };
 
 export default Abacus;

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useEventCallback } from "rxjs-hooks";
-import { filter, tap, delay } from "rxjs/operators";
-import useTerminal from "../states/useTerminal";
+import React, { useEffect } from 'react';
+import { useEventCallback } from 'rxjs-hooks';
+import { filter, tap, delay } from 'rxjs/operators';
+import useTerminal from '../states/useTerminal';
 
 function Column(props) {
   const { render } = props;
@@ -9,32 +9,30 @@ function Column(props) {
   const { state, begin, end } = useTerminal();
   const {
     args,
-    controls: { start }
+    controls: { start },
   } = state;
 
   const [onEvent] = useEventCallback(
-    (events$, state$, inputs$) => {
-      return events$.pipe(
-        filter((event) => event.type === "start"),
-        tap(() => begin()),
-        delay(100),
-        tap(() => end())
-      );
-    },
+    (events$, state$, inputs$) => events$.pipe(
+      filter((event) => event.type === 'start'),
+      tap(() => begin()),
+      delay(100),
+      tap(() => end()),
+    ),
     0,
-    [args]
+    [args],
   );
 
   useEffect(() => {
     if (start) {
-      onEvent({ type: "start" });
+      onEvent({ type: 'start' });
     }
   }, [onEvent, start]);
 
   return (
     <div>
       {render({
-        args
+        args,
       })}
     </div>
   );
@@ -42,7 +40,7 @@ function Column(props) {
 
 export default Column;
 
-/*<button name="play" onClick={onEvent}>
+/* <button name="play" onClick={onEvent}>
 {running ? "Stop" : "Start"}
 </button>
 <button onClick={handleFree}>change 3</button>

@@ -1,58 +1,60 @@
-import React, { useEffect, useReducer } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useReducer } from 'react';
+import PropTypes from 'prop-types';
 
 export const types = {
-  ON_START: "ON_START",
-  ON_STOP: "ON_STOP",
-  ON_CHECK: "ON_CHECK",
-  ON_INCREMENT: "ON_INCREMENT",
-  ON_CHANGE: "ON_CHANGE",
-  ON_PARAMS: "ON_PARAMS",
-  ON_PURSE: "ON_PURSE",
-  ON_BEGIN: "ON_BEGIN",
-  ON_END: "ON_END",
-  ON_PROGRESS: "ON_PROGRESS",
+  ON_START: 'ON_START',
+  ON_STOP: 'ON_STOP',
+  ON_CHECK: 'ON_CHECK',
+  ON_INCREMENT: 'ON_INCREMENT',
+  ON_CHANGE: 'ON_CHANGE',
+  ON_PARAMS: 'ON_PARAMS',
+  ON_PURSE: 'ON_PURSE',
+  ON_BEGIN: 'ON_BEGIN',
+  ON_END: 'ON_END',
+  ON_PROGRESS: 'ON_PROGRESS',
 
-  ON_DICTATION_START: "ON_DICTATION_START",
-  ON_DICTATION_PROGRESS: "ON_DICTATION_PROGRESS",
+  ON_DICTATION_START: 'ON_DICTATION_START',
+  ON_DICTATION_PROGRESS: 'ON_DICTATION_PROGRESS',
 
-  SET_PARAMS: "SET_PARAMS",
-  SET_CONTROLS: "SET_CONTROLS",
-  SET_DICTATION_STATUSES: "SET_DICTATION_STATUSES"
+  SET_PARAMS: 'SET_PARAMS',
+  SET_CONTROLS: 'SET_CONTROLS',
+  SET_DICTATION_STATUSES: 'SET_DICTATION_STATUSES',
 };
 
 function reducer(state, action) {
-  const { params, controls, onStart, args: nextAgrs } = state;
+  const {
+    params, controls, onStart, args: nextAgrs,
+  } = state;
   const { success, failure, value } = controls;
   switch (action.type) {
     case types.ON_START: {
       onStart(params);
-      console.log("%%%%%%%%%%%%% TERMINAL CONTEXT --- START");
+      console.log('%%%%%%%%%%%%% TERMINAL CONTEXT --- START');
       return {
         ...state,
         args: [],
         workout: {
           begin: false,
           progress: false,
-          end: false
+          end: false,
         },
         controls: {
           ...controls,
           start: true,
           stop: false,
           check: false,
-          value: ""
-        }
+          value: '',
+        },
       };
     }
     case types.ON_CHECK: {
-      console.log("%%%%%%%%%%%%% TERMINAL CONTEXT --- CHECK");
+      console.log('%%%%%%%%%%%%% TERMINAL CONTEXT --- CHECK');
 
       const sum = nextAgrs.reduce((acc, next) => acc + next, 0);
-      let counter_type = "failure";
+      let counter_type = 'failure';
 
       if (sum === Number(value)) {
-        counter_type = "success";
+        counter_type = 'success';
       }
 
       return {
@@ -67,41 +69,41 @@ function reducer(state, action) {
           [counter_type]: controls[counter_type] + 1,
           start: controls.repeat,
           stop: false,
-          check: true
-        }
+          check: true,
+        },
       };
     }
     case types.ON_STOP:
-      console.log("%%%%%%%%%%%%% TERMINAL CONTEXT --- STOP");
+      console.log('%%%%%%%%%%%%% TERMINAL CONTEXT --- STOP');
       return {
         ...state,
         args: [],
         workout: {
           begin: false,
           progress: false,
-          end: false
+          end: false,
         },
         controls: {
           ...controls,
           start: false,
           stop: true,
-          check: false
-        }
+          check: false,
+        },
       };
     case types.ON_INCREMENT: {
-      const inc = action.meta === "success" ? success : failure;
+      const inc = action.meta === 'success' ? success : failure;
 
       return {
         ...state,
-        controls: { ...controls, [action.meta]: inc + 1 }
+        controls: { ...controls, [action.meta]: inc + 1 },
       };
     }
     case types.ON_CHANGE: {
       // TODO сделать событие pre_start
       if (
-        action.meta === "args" &&
-        action.payload &&
-        action.payload.length > 0
+        action.meta === 'args'
+        && action.payload
+        && action.payload.length > 0
       ) {
         return {
           ...state,
@@ -109,12 +111,12 @@ function reducer(state, action) {
           play: true,
           check: false,
           stop: false,
-          [action.meta]: action.payload
+          [action.meta]: action.payload,
         };
       }
       return {
         ...state,
-        [action.meta]: action.payload
+        [action.meta]: action.payload,
       };
     }
     case types.SET_CONTROLS:
@@ -122,7 +124,7 @@ function reducer(state, action) {
     case types.SET_DICTATION_STATUSES: {
       return {
         ...state,
-        [action.meta]: action.payload
+        [action.meta]: action.payload,
       };
     }
     case types.ON_BEGIN:
@@ -132,8 +134,8 @@ function reducer(state, action) {
         workout: {
           begin: true,
           progress: false,
-          end: false
-        }
+          end: false,
+        },
       };
     case types.ON_PROGRESS:
       return {
@@ -141,8 +143,8 @@ function reducer(state, action) {
         workout: {
           begin: false,
           progress: true,
-          end: false
-        }
+          end: false,
+        },
       };
     case types.ON_END: {
       state.onEnd(params);
@@ -151,15 +153,15 @@ function reducer(state, action) {
         workout: {
           begin: false,
           progress: false,
-          end: true
-        }
+          end: true,
+        },
       };
     }
     case types.ON_PURSE:
       return {
         ...state,
         success: 0,
-        failure: 0
+        failure: 0,
       };
     case types.ON_DICTATION_START:
       return {
@@ -167,8 +169,8 @@ function reducer(state, action) {
         dictationStatuses: {
           start: true,
           progress: false,
-          stop: false
-        }
+          stop: false,
+        },
       };
     case types.ON_DICTATION_PROGRESS:
       return {
@@ -176,8 +178,8 @@ function reducer(state, action) {
         dictationStatuses: {
           start: false,
           progress: true,
-          stop: false
-        }
+          stop: false,
+        },
       };
 
     default:
@@ -195,7 +197,7 @@ const initialState = {
     bound: 0,
     under: 1,
     over: 1,
-    numbers: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    numbers: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
   },
   controls: {
     count: 5,
@@ -208,13 +210,13 @@ const initialState = {
     settings: true,
     repeat: false,
     correct: false,
-    value: "",
+    value: '',
     open: true,
     sound: false,
     sample: false,
     showAnswers: false,
     success: 0,
-    failure: 0
+    failure: 0,
   },
   visible: {
     answerCounter: {
@@ -224,14 +226,14 @@ const initialState = {
       play: true,
       abacus: true,
       params: true,
-      showAnswers: true
-    }
+      showAnswers: true,
+    },
   },
   workout: {
     begin: false,
     progress: false,
-    end: false
-  }
+    end: false,
+  },
 };
 
 const TerminalContext = React.createContext([initialState, () => {}]);
@@ -242,12 +244,16 @@ const TerminalProvider = (props) => {
     params: globalParams,
     request,
     controls: globalControls,
-    children
+    children,
   } = props;
 
   const [state, dispatch] = useReducer(reducer, { ...props, ...initialState });
-  const { args: nextAgrs, controls, params, onStart } = state;
-  const { check, value, start, stop, success, failure } = controls;
+  const {
+    args: nextAgrs, controls, params, onStart,
+  } = state;
+  const {
+    check, value, start, stop, success, failure,
+  } = controls;
 
   // useEffect(() => {
   //   dispatch({
@@ -260,7 +266,7 @@ const TerminalProvider = (props) => {
   useEffect(() => {
     if (check) {
       dispatch({
-        type: types.ON_CHECK
+        type: types.ON_CHECK,
       });
     }
   }, [check]);
@@ -303,13 +309,13 @@ const TerminalProvider = (props) => {
   //   }
   // }, [stop]);
 
-  // useEffect(() => {
-  //   dispatch({
-  //     type: types.ON_CHANGE,
-  //     meta: "args",
-  //     payload: args
-  //   });
-  // }, [args]);
+  useEffect(() => {
+    dispatch({
+      type: types.ON_CHANGE,
+      meta: 'args',
+      payload: args,
+    });
+  }, [args]);
 
   // useEffect(() => {
   //   dispatch({
@@ -339,7 +345,7 @@ TerminalProvider.propTypes = {
   params: PropTypes.object.isRequired,
   controls: PropTypes.object.isRequired,
   request: PropTypes.object.isRequired,
-  children: PropTypes.any.isRequired
+  children: PropTypes.any.isRequired,
 };
 
 export { TerminalContext, TerminalProvider };

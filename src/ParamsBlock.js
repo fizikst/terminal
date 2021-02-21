@@ -1,10 +1,8 @@
-import React from "react";
+import React from 'react';
 
 const stepsList = [1, 2, 3, 4, 5];
 
-const generateKey = (pre) => {
-  return `${pre}_${new Date().getTime()}`;
-};
+const generateKey = (pre) => `${pre}_${new Date().getTime()}`;
 
 function ParamsBlock(props) {
   const { onChange, params } = props;

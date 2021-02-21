@@ -1,16 +1,15 @@
-import "./wdyr";
-import React, { useEffect } from "react";
-import "./styles.css";
+import './wdyr';
+import React, { useEffect } from 'react';
 
-import Forsage from "./components/containers/Forsage";
-import Column from "./components/containers/Column";
-import Card from "./components/containers/Card";
-import RenderForsage from "./components/renders/RenderForsage";
-import RenderColumn from "./components/renders/RenderColumn";
-import RenderCard from "./components/renders/RenderCard";
-import Dashboard from "./Dashboard";
-import ParamsBlock from "./ParamsBlock";
-import { TerminalProvider } from "./components/states/TerminalContext";
+import Forsage from './components/containers/Forsage';
+import Column from './components/containers/Column';
+import Card from './components/containers/Card';
+import RenderForsage from './components/renders/RenderForsage';
+import RenderColumn from './components/renders/RenderColumn';
+import RenderCard from './components/renders/RenderCard';
+import Dashboard from './Dashboard';
+import ParamsBlock from './ParamsBlock';
+import { TerminalProvider } from './components/states/TerminalContext';
 // console.log({ TerminalProvider });
 
 // import Flash from "./Flash";
@@ -38,7 +37,7 @@ const initParams = {
   bound: 0,
   under: 1,
   over: 1,
-  numbers: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  numbers: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
 };
 const initControls = {
   count: 5,
@@ -51,19 +50,19 @@ const initControls = {
   settings: true,
   repeat: false,
   correct: false,
-  value: "",
+  value: '',
   open: true,
   sound: false,
   sample: false,
   showAnswers: false,
   success: 0,
-  failure: 0
+  failure: 0,
 };
 
 function getRandom(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
+  return Math.floor(Math.random() * (max - min)) + min; // Максимум не включается, минимум включается
 }
 
 export default function App() {
@@ -80,19 +79,19 @@ export default function App() {
   const [request, setRequest] = React.useState({
     data: [],
     error: false,
-    errorMessage: "",
+    errorMessage: '',
     loading: false,
-    success: false
+    success: false,
   });
 
   const handleRequest = () => {
-    console.log("--------- APP handle request");
+    console.log('--------- APP handle request');
     setRequest({
       data: [getRandom(1, 10)],
       error: false,
-      errorMessage: "",
+      errorMessage: '',
       loading: false,
-      success: true
+      success: true,
     });
   };
 
